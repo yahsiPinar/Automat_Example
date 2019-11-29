@@ -11,7 +11,7 @@ public class Machine {
         products.add(new Product("Fanta",20));
         products.add(new Product("Gazoz",30));
 
-        // initialize state
+        // initial state
 
     }
     public MachineState getState() {
