@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Machine {
 
@@ -8,11 +7,11 @@ public class Machine {
     ArrayList<Product> products = new ArrayList<Product>();
 
     public Machine() {
-        products.add(new Product("Coke",15));
+        products.add(new Product("Kola",15));
         products.add(new Product("Fanta",20));
-        products.add(new Product("Soda",30));
+        products.add(new Product("Gazoz",30));
 
-        // initial state
+        setState(new InitialState());
 
     }
     public double getBalance() {
@@ -23,17 +22,28 @@ public class Machine {
         this.balance = balance;
     }
 
-    //    public MachineState getState() {
-//        return state;
-//    }
-//    public void setState(MachineState state) {
-//        this.state = state;
-//    }
-    public void RequestProduct(String product, double money){
-        // change state
-
+    public MachineState getState() {
+        return state;
+    }
+    public void setState(MachineState state) {
+        this.state = state;
+        state.HandleState(this);
     }
 
+    public void RequestProduct(String product, double money){
 
+        int pr =0;
+        // change state product radiobuttondan gelecek Requesti orda oluşturacaksın
+        for(int i=0; i<products.size();i++){
+            if (products.get(i).Name.equals(product)){
+                pr = i;
+                break;
+            }
+        }
+        if (products.get(pr).Price<=money){
+            System.out.println("inside request product");
+            setState(new BuyingState(products.get(pr).Price,this.balance,products.get(pr).Name));
 
+        }
+    }
 }

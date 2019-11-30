@@ -7,35 +7,47 @@ public class AutomatDemo extends JFrame implements ActionListener {
 
     Machine machine;
 
-    int totalMoney;
+
     double money;
     TextField inputTx;
-    JLabel title, input, total, totalMoneylbl;
-    JRadioButton coke, fanta, soda;
+    JLabel title, input, total, totalMoneylbl, change, changelbl;
+    JRadioButton coke, fanta, soda, selected;
     JButton addMoney, buy, quit, exit;
+    ButtonGroup group;
 
     public AutomatDemo(){
 
         machine = new Machine();
 
+        selected = new JRadioButton();
         title = new JLabel("Hoşgeldiniz! Sadece 0.50 Krş, 1 TL, 5 TL, 10 TL girişi yapınız!");
         title.setBounds(50,50,500,20);
         input = new JLabel("Para Girişi: ");
-        input.setBounds(50,100,70,20);
+        input.setBounds(50,100,90,20);
         inputTx = new TextField();
-        inputTx.setBounds(120,100,50,20);
+        inputTx.setBounds(140,100,50,20);
         addMoney = new JButton("Ekle");
-        addMoney.setBounds(200,100,70,20);
+        addMoney.setBounds(220,100,70,20);
         total = new JLabel("Bakiye: ");
-        total.setBounds(50,150,50,20);
-        // TODO: get total money and print
-
-        totalMoneylbl = new JLabel("xxxx");
-        totalMoneylbl.setBounds(120,150,50,20);
+        total.setBounds(50,150,90,20);
+        totalMoneylbl = new JLabel("00.00 TL");
+        totalMoneylbl.setBounds(140,150,90,20);
+//        change = new JLabel("Para Üstü: ");
+////        change.setBounds(50,170,90,20);
+////        changelbl = new JLabel("00.00 TL");
+////        changelbl.setBounds(140,170,90,20);
 
         coke = new JRadioButton("Kola 15.00 tl");
+        coke.setActionCommand("Coke");
         fanta = new JRadioButton("Fanta 20.00 tl");
+        fanta.setActionCommand("Fanta");
         soda = new JRadioButton("Gazoz 30.00 tl");
+        soda.setActionCommand("Soda");
+
+        group = new ButtonGroup();
+        group.add(coke);
+        group.add(fanta);
+        group.add(soda);
 
         coke.setBounds(50,200,100,20);
         fanta.setBounds(150,200,100,20);
@@ -49,7 +61,7 @@ public class AutomatDemo extends JFrame implements ActionListener {
         quit.setBounds(200,300,100,20);
         exit.setBounds(350,300,100,20);
 
-        add(inputTx);add(totalMoneylbl);add(title);add(input);add(total);add(coke);add(fanta);add(soda);add(addMoney);add(buy);add(quit);add(exit);
+        add(inputTx);add(totalMoneylbl);add(title);add(input);add(total);add(coke);add(fanta);add(soda);add(addMoney);add(buy);add(quit);add(exit);//add(change);add(changelbl);
 
         addMoney.addActionListener(this);
         buy.addActionListener(this);
@@ -64,34 +76,49 @@ public class AutomatDemo extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource()==exit)
         {
             //do something
+            machine.setState(new ExitState(machine.balance));
         }
         else if (e.getSource()==addMoney)
         {
             money = Double.parseDouble(inputTx.getText());
             if (money == 0.50 || money == 1 || money == 5 || money == 10) {
-                machine.state = new PaymentState(money);
+                machine.balance += money;
+                totalMoneylbl.setText(String.valueOf(machine.balance)+" TL");
+                inputTx.setText(null);
             }
             else {
                 JOptionPane.showMessageDialog(null, "Lütfen geçerli bir giriş yapın!");
             }
-
         }
         else if (e.getSource()==buy)
         {
-            //do something
+            //check balance and selected item
+            if(CheckRequestIsValid()) {
+                System.out.println("inside buy buton");
+                machine.RequestProduct(group.getSelection().getActionCommand(),machine.balance);
+                totalMoneylbl.setText(String.valueOf(machine.balance)+" TL");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Lütfen geçerli bir giriş yapın!");
+            }
         }
         else if (e.getSource()==quit)
         {
             //do something
         }
     }
+    public boolean CheckRequestIsValid(){
+
+        if(group.getSelection()!=null && machine.balance > 0) return true;
+        return false;
+    }
+
     public static void main(String[] args){
         new AutomatDemo();
-
-        //machine.RequestProduct("Coke",);
 
     }
 }
