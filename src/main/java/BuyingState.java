@@ -4,10 +4,12 @@ public class BuyingState implements MachineState {
     public double cost;
     public double balance;
     public String product;
+    public Coins coins;
     public BuyingState(double cost, double balance, String product) {
         this.cost = cost;
         this.balance = balance;
         this.product = product;
+        this.coins = new Coins();
     }
     public void HandleState(Machine machine) {
         // TODO: change the state

@@ -5,6 +5,7 @@ public class Machine {
     public MachineState state;
     public double balance;
     ArrayList<Product> products = new ArrayList<Product>();
+    Coins coins = new Coins();
 
     public Machine() {
         products.add(new Product("Kola",15));
@@ -14,14 +15,6 @@ public class Machine {
         setState(new InitialState());
 
     }
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public MachineState getState() {
         return state;
     }
@@ -33,7 +26,6 @@ public class Machine {
     public void RequestProduct(String product, double money){
 
         int pr =0;
-        // change state product radiobuttondan gelecek Requesti orda oluşturacaksın
         for(int i=0; i<products.size();i++){
             if (products.get(i).Name.equals(product)){
                 pr = i;

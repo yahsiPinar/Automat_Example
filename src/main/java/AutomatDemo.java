@@ -32,10 +32,6 @@ public class AutomatDemo extends JFrame implements ActionListener {
         total.setBounds(50,150,90,20);
         totalMoneylbl = new JLabel("00.00 TL");
         totalMoneylbl.setBounds(140,150,90,20);
-//        change = new JLabel("Para Üstü: ");
-////        change.setBounds(50,170,90,20);
-////        changelbl = new JLabel("00.00 TL");
-////        changelbl.setBounds(140,170,90,20);
 
         coke = new JRadioButton("Kola 15.00 tl");
         coke.setActionCommand("Coke");
@@ -59,14 +55,12 @@ public class AutomatDemo extends JFrame implements ActionListener {
 
         buy.setBounds(50,300,100,20);
         quit.setBounds(200,300,100,20);
-        exit.setBounds(350,300,100,20);
 
-        add(inputTx);add(totalMoneylbl);add(title);add(input);add(total);add(coke);add(fanta);add(soda);add(addMoney);add(buy);add(quit);add(exit);//add(change);add(changelbl);
+        add(inputTx);add(totalMoneylbl);add(title);add(input);add(total);add(coke);add(fanta);add(soda);add(addMoney);add(buy);add(quit);
 
         addMoney.addActionListener(this);
         buy.addActionListener(this);
         quit.addActionListener(this);
-        exit.addActionListener(this);
 
         setSize(500,500);
         setLayout(null);
@@ -77,16 +71,12 @@ public class AutomatDemo extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource()==exit)
-        {
-            //do something
-            machine.setState(new ExitState(machine.balance));
-        }
-        else if (e.getSource()==addMoney)
+        if (e.getSource()==addMoney)
         {
             money = Double.parseDouble(inputTx.getText());
             if (money == 0.50 || money == 1 || money == 5 || money == 10) {
                 machine.balance += money;
+                machine.coins.increaseCoinValue(money);
                 totalMoneylbl.setText(String.valueOf(machine.balance)+" TL");
                 inputTx.setText(null);
             }
@@ -98,7 +88,7 @@ public class AutomatDemo extends JFrame implements ActionListener {
         {
             //check balance and selected item
             if(CheckRequestIsValid()) {
-                System.out.println("inside buy buton");
+                System.out.println("inside buy button");
                 machine.RequestProduct(group.getSelection().getActionCommand(),machine.balance);
                 totalMoneylbl.setText(String.valueOf(machine.balance)+" TL");
             }
@@ -109,6 +99,8 @@ public class AutomatDemo extends JFrame implements ActionListener {
         else if (e.getSource()==quit)
         {
             //do something
+            machine.setState(new QuitState(machine.balance));
+            totalMoneylbl.setText(String.valueOf(machine.balance)+" TL");
         }
     }
     public boolean CheckRequestIsValid(){
