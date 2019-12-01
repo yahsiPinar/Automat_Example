@@ -14,8 +14,13 @@ public class BuyingState implements MachineState {
     public void HandleState(Machine machine) {
         // TODO: change the state
         System.out.println("inside buying state");
-        JOptionPane.showMessageDialog(null, "Ürün: "+product+"\nÖdenen Tutar: "+this.balance+"\nToplam: "+this.cost+"\nPara Üstü: "+(this.balance-this.cost));
-        machine.setState(new ExitState(this.balance-this.cost));
-    }
+        JOptionPane.showMessageDialog(null, "Ürün: " + product + "\nÖdenen Tutar: " + this.balance + "\nToplam: " + this.cost + "\nPara Üstü: " + (this.balance - this.cost));
+        if ((this.balance - this.cost) == 0) {
+            JOptionPane.showMessageDialog(null, "İşlem tamamlandı...\n"+machine.coins.findChange(0));
+            machine.setState(new InitialState());
+        } else {
+            machine.setState(new ExitState(this.balance - this.cost));
 
+        }
+    }
 }

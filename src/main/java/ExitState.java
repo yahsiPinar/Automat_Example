@@ -19,8 +19,6 @@ public class ExitState implements MachineState {
         }
         else{
             JOptionPane.showMessageDialog(null, "İşlem tamamlandı...\n"+machine.coins.findChange(change));
-            machine.balance = 0;
-            //TODO: give the change as minimum number of coins
             //go back to initial state
             machine.setState(new InitialState());
         }

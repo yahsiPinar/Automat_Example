@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Machine {
@@ -35,7 +36,10 @@ public class Machine {
         if (products.get(pr).Price<=money){
             System.out.println("inside request product");
             setState(new BuyingState(products.get(pr).Price,this.balance,products.get(pr).Name));
-
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Bakiyeniz yetersiz :("," ",JOptionPane.INFORMATION_MESSAGE);
+            setState(new InitialState(money));
         }
     }
 }
