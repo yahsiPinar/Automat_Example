@@ -32,12 +32,4 @@ Problem bir otomatı tanımladığı için State Design Pattern tercih edilmişt
 
 **3.** Ürünlerin stokları infinite kabul edilmiştir. 
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
->>>>>>> 5bfafec43e4add6c917eb86d06ac3f1ae5a7f414
 
