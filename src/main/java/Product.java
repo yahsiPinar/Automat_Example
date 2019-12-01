@@ -1,9 +1,7 @@
-public class Product{
-    public String Name;
-    public double Price;
+public abstract class Product{
+    public String Name = "Unknown";
+    public double Price = 00.00;
 
-    public Product(String name, double price) {
-        Name = name;
-        Price = price;
-    }
+    public abstract String getName();
+    public abstract double getPrice();
 }

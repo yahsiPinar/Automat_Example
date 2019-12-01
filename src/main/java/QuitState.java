@@ -2,8 +2,8 @@ import javax.swing.*;
 
 public class QuitState implements MachineState {
 
-    public double balance;
-    public QuitState(double balance) {
+    private double balance;
+    QuitState(double balance) {
         this.balance = balance;
     }
     @Override
@@ -15,7 +15,7 @@ public class QuitState implements MachineState {
             machine.setState(new InitialState(this.balance));
         }
         else{
-            JOptionPane.showMessageDialog(null, "Para iadeniz yapılıyor...\n"+machine.coins.findChange(balance));
+            JOptionPane.showMessageDialog(null, "Para iadeniz yapılıyor...\nİade Tutarı: \n\t"+machine.coins.findChange(balance));
             machine.balance = 0;
             //go back to initial state
             machine.setState(new InitialState());

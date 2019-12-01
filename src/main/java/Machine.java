@@ -3,18 +3,16 @@ import java.util.ArrayList;
 
 public class Machine {
 
-    public MachineState state;
+    private MachineState state;
     public double balance;
     ArrayList<Product> products = new ArrayList<Product>();
     Coins coins = new Coins();
 
-    public Machine() {
-        products.add(new Product("Kola",15));
-        products.add(new Product("Fanta",20));
-        products.add(new Product("Gazoz",30));
-
+    Machine() {
+        products.add(new Coke());
+        products.add(new Fanta());
+        products.add(new Soda());
         setState(new InitialState());
-
     }
     public MachineState getState() {
         return state;
@@ -25,7 +23,6 @@ public class Machine {
     }
 
     public void RequestProduct(String product, double money){
-
         int pr =0;
         for(int i=0; i<products.size();i++){
             if (products.get(i).Name.equals(product)){

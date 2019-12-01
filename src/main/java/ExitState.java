@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class ExitState implements MachineState {
 
-    public double change;
-    public ExitState(double change) {
+    private double change;
+    ExitState(double change) {
         this.change = change;
     }
     @Override
@@ -15,10 +15,11 @@ public class ExitState implements MachineState {
         int a = JOptionPane.showConfirmDialog(null,"Alışverişe devam etmek istiyor musunuz?"," ",JOptionPane.YES_NO_OPTION);
         if(a==JOptionPane.YES_OPTION){
             //go back to waiting state
+            JOptionPane.showMessageDialog(null, "Mevcut Bakiye: \n\t"+machine.coins.findChange(change));
             machine.setState(new InitialState(this.change));
         }
         else{
-            JOptionPane.showMessageDialog(null, "İşlem tamamlandı...\n"+machine.coins.findChange(change));
+            JOptionPane.showMessageDialog(null, "İşlem tamamlandı...\nİade Tutarı: \n\t"+machine.coins.findChange(change));
             //go back to initial state
             machine.setState(new InitialState());
         }
