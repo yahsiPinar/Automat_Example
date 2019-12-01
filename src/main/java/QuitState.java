@@ -8,7 +8,6 @@ public class QuitState implements MachineState {
     }
     @Override
     public void HandleState(Machine machine) {
-        System.out.println("inside quit state");
         int a = JOptionPane.showConfirmDialog(null,"İşlemi iptal etmek istediğinizden emin misiniz?"," ",JOptionPane.YES_NO_OPTION);
         if(a==JOptionPane.NO_OPTION){
             //go back to waiting state

@@ -9,7 +9,7 @@ public class Coins {
     // 10*1 TL etc.
     Coins() {
         for (Double c : coinArray) {
-            coins.put(c,5);
+            coins.put(c,100);
         }
     }
     public void increaseCoinValue(double key){

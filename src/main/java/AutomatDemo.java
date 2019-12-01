@@ -99,8 +99,8 @@ public class AutomatDemo extends JFrame implements ActionListener {
 
         else if (e.getSource()==quit)
         {
-            clearScreen();
             machine.setState(new QuitState(machine.balance));
+            clearScreen();
         }
     }
     private boolean CheckRequestIsValid(){

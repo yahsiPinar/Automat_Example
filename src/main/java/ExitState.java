@@ -10,8 +10,6 @@ public class ExitState implements MachineState {
     }
     @Override
     public void HandleState(Machine machine) {
-
-        System.out.println("inside exit state");
         int a = JOptionPane.showConfirmDialog(null,"Alışverişe devam etmek istiyor musunuz?"," ",JOptionPane.YES_NO_OPTION);
         if(a==JOptionPane.YES_OPTION){
             //go back to waiting state

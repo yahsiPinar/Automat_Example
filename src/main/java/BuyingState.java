@@ -11,8 +11,6 @@ public class BuyingState implements MachineState {
         this.product = product;
     }
     public void HandleState(Machine machine) {
-        // TODO: change the state
-        System.out.println("inside buying state");
         JOptionPane.showMessageDialog(null, "Ürün: " + product + "\nÖdenen Tutar: " + this.balance + "\nToplam: " + this.cost + "\nPara Üstü: " + (this.balance - this.cost));
         if ((this.balance - this.cost) == 0) {
             JOptionPane.showMessageDialog(null, "İşlem tamamlandı...\nİade Tutarı: \n\t"+machine.coins.findChange(0));

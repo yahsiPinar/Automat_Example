@@ -1,5 +1,3 @@
 public interface MachineState {
-
-    public abstract void HandleState(Machine machine);
-
+     void HandleState(Machine machine);
 }

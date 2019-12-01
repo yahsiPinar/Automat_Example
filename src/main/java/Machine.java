@@ -14,9 +14,6 @@ public class Machine {
         products.add(new Soda());
         setState(new InitialState());
     }
-    public MachineState getState() {
-        return state;
-    }
     public void setState(MachineState state) {
         this.state = state;
         state.HandleState(this);
@@ -31,7 +28,6 @@ public class Machine {
             }
         }
         if (products.get(pr).Price<=money){
-            System.out.println("inside request product");
             setState(new BuyingState(products.get(pr).Price,this.balance,products.get(pr).Name));
         }
         else{
