@@ -36,6 +36,6 @@ Problem bir otomatı tanımladığı için State Design Pattern tercih edilmişt
 
 **5.** .jar dosyası target klasörünün içerisindedir.
 
-
+**6.** Google güvenlik hastası verdiği için mail yolu ile projeyi ulaştırmam mümkün olmadı bu sebeple Github linkini paylaşmak durumunda kaldım.
 
 
