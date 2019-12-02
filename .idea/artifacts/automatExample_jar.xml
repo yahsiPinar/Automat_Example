@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="automatExample:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/automatExample_jar</output-path>
+    <root id="archive" name="automatExample.jar">
+      <element id="module-output" name="automatExample" />
+    </root>
+  </artifact>
+</component>
