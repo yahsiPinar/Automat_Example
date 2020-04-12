@@ -32,3 +32,7 @@ Problem bir otomatı tanımladığı için State Design Pattern tercih edilmişt
 
 **3.** Ürünlerin stokları infinite kabul edilmiştir. 
 
+**4.** Eğer Java versiyonunuz 10'dan düşük ise File->Project Structure->Modules->Language Level yolunu takip ederek Language Leveli kendi java versiyonunuza göre ayarlayınız. 
+
+**5.** .jar dosyası target klasörünün içerisindedir.
+
